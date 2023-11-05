@@ -76,9 +76,8 @@ with st.sidebar:
     value="today"
   )
 
-  should_disable = today.strftime("%Y-%m-%d") not in entry
-  perspective_week_button = st.button("Reflect on the week", disabled=should_disable)
-  perspective_month_button = st.button("Reflect on the month", disabled=should_disable) 
+  perspective_week_button = st.button("Reflect on the week")
+  perspective_month_button = st.button("Reflect on the month") 
 
 
 # Show the selected date
