@@ -60,7 +60,7 @@ with st.sidebar:
   entries = requests.get("http://localhost:8000/api/entries").json()
   buttons.append((today, st.button("Today")))
   sorted_entries = sorted(entries, reverse=True) 
-  for entry in sorted_entries[:6]:
+  for entry in sorted_entries[:7]:
     if today.strftime("%Y-%m-%d") != entry:
       display_date = datetime.strptime(entry, "%Y-%m-%d").strftime("%B %d")
       buttons.append((datetime.strptime(entry, "%Y-%m-%d").date(), st.button(display_date)))
@@ -76,8 +76,10 @@ with st.sidebar:
     value="today"
   )
 
-  perspective_week_button = st.button("Reflect on the week")
-  perspective_month_button = st.button("Reflect on the month") 
+  should_disable = today.strftime("%Y-%m-%d") not in entry
+  perspective_week_button = st.button("Reflect on the week", disabled=should_disable)
+  perspective_month_button = st.button("Reflect on the month", disabled=should_disable) 
+
 
 # Show the selected date
 if perspective_week_button:
